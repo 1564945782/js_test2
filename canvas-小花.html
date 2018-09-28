@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>试题测试</title>
+    <style>
+        #mycanvas {
+            background-color: #0ab;
+            border: 1px solid salmon;
+        }
+    </style>
+
+</head>
+
+<body>
+    <canvas id="mycanvas" width="500" height="500">
+        你的浏览器不支持画布
+    </canvas>
+    <script type="text/javascript">
+        let mycanvas = document.querySelector("#mycanvas");
+        let circle = mycanvas.getContext("2d");
+        let width = mycanvas.width;
+        let height = mycanvas.height;
+        let r = 50;
+        let huaban;
+        let r1;
+        //let random1=45;//45度
+
+        //度数
+        let random1 = 30;
+        //let random1 = Math.round(Math.random() * 90);//30度       
+        //console.log(random1);
+
+
+
+        circle.beginPath();
+        circle.strokeStyle = "orange";
+        //circle.moveTo(200,200);
+        // circle.lineTo(300,200);
+        //circle.stroke();
+        //circle.beginPath();
+        circle.arc(width / 2, height / 2, r, Math.PI / 180 * 0, Math.PI / 180 * 360);
+        circle.stroke();
+
+
+
+        for (let index = 0; index < (360 / 30); index++) {
+            
+            //1度弧度值       
+            let hudu = (Math.PI / 180) *1;
+            //console.log(hudu);
+            //落在圆上面的坐标
+            //X坐标
+            let x1 = r * (Math.cos(hudu * random1));
+            //console.log(x1);
+            //Y坐标
+            let y1 = r * (Math.sin(hudu * random1));
+            //console.log(y1);
+
+            
+            let x2 = r * (Math.cos(hudu * (random1+30)));
+            //console.log(x2);
+            //Y坐标
+            let y2 = r * (Math.sin(hudu * (random1+30)));
+            //console.log(y2);
+
+
+            let x3 = 2*r * (Math.cos(hudu * (random1+15)));
+            //.log(x3);
+            //Y坐标
+            let y3 = 2*r * (Math.sin(hudu * (random1+15)));
+            //console.log(y3);
+
+
+            circle.beginPath();
+            circle.strokeStyle = "orange";
+            circle.fillStyle="#f0c";
+            
+            circle.moveTo(width / 2, height / 2);
+           circle.arc(width / 2, height / 2, r, Math.PI/180*random1, Math.PI/180*(random1+30));
+           circle.closePath();
+            //circle.lineTo((50*Math.cos(random1)+Math.sqrt(width*width+height*height)),(50*Math.sin(random1)+Math.sqrt(width*width+height*height)));
+            //circle.lineTo(x1 + width / 2, y1 + height / 2);
+            console.log(width / 2);
+            console.log(height / 2);
+            //circle.stroke();
+            //circle.beginPath();
+            // circle.arc(width/2,height/2,50,Math.PI/180*0,Math.PI/180*360);
+            circle.fill();
+            circle.stroke();
+
+                circle.beginPath();
+                circle.strokeStyle = "yellowp";
+                circle.fillStyle="pink";
+
+                //circle.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+                
+              // circle.moveTo(300,250);
+               //circle.quadraticCurveTo(350,300,250,300);
+                //圆心
+                //huaban=Math.sqrt((Math.PI/180*random1)*(Math.PI/180*(random1-30))+(Math.PI/180*random1)*(Math.PI/180*(random1+30)))
+                //r1=huaban/2;
+                //circle.moveTo(Math.PI/180*(random1-30), Math.PI/180*random1);
+                //circle.arc(width / 2, height / 2, r, Math.PI/180*random1, Math.PI/180*(random1+30));
+               
+               
+               
+                circle.moveTo(x1 + width / 2,y1 + height / 2);
+                console.log(x3 + width / 2);
+                console.log(y3 + height / 2);
+                console.log(Math.sin(hudu*30));
+                console.log(x2 + width / 2);
+                console.log(y2 + height / 2);
+                //circle.quadraticCurveTo(350,250,300,250);
+
+                circle.quadraticCurveTo(x3 + width / 2, y3 + height / 2,x2 + width / 2, y2 + height / 2);
+                circle.fill();
+
+                circle.stroke();
+
+                random1 += 30;
+
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

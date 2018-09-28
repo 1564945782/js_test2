@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作业--接球</title>
+    <style>
+        .mygame{
+            width: 600px;
+            height: 600px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .ball{
+            border-radius: 50%;
+            position: absolute;
+        }
+        .board{
+            width: 100px;
+            height: 30px;
+            background-color: rgb(112, 63, 70);
+            position: absolute;
+            left: 45%;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="mygame">
+        <div class="board"></div>
+    </div>
+    <button class="start">开始游戏</button>
+    <button class="pause">暂停游戏</button>
+    <script src="./js/ballOper.js"></script>
+    <!-- <script src="./js/boardOper.js"></script> -->
+    <script>
+        let ball = new ballOper('.mygame');
+        // let board = new boardOper('.mygame', ball);
+        document.querySelector('.start').onclick = function () {
+            ball.time = 50; 
+            //球开始自由落体了
+            ball.drop();
+            //板子可以开始移动了
+            ball.moveBoard();
+        }
+
+        document.querySelector('.pause').onclick = function () {
+            ball.pause();
+        }
+    </script>
+</body>
+</html>

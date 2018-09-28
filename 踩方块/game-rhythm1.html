@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>踩方块</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .contain1 {
+            width: 322px;
+            height: 552px;
+            border: 1px solid palevioletred;
+            position: relative;
+            left: 500px;
+            top: 50px;
+            z-index: 999;
+            box-sizing: border-box;
+        }
+
+        .hidden {
+            width: 320px;
+            height: 480px;
+            position: absolute;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .start {
+            width: 320px;
+            height: 69px;
+            box-sizing: border-box;
+            background-color: palegoldenrod;
+            background-image: url(./img/game7.jpg);
+            position: absolute;
+            top: 480px;
+            text-align: center;
+            line-height: 68px;
+            font-size: 20px;
+            color: rgb(78, 77, 77);
+            font-weight: 700;
+            display: block;
+        }
+
+        .stop {
+            width: 320px;
+            height: 69px;
+            box-sizing: border-box;
+            background-color: palegoldenrod;
+            background-image: url(./img/game7.jpg);
+            position: absolute;
+            top: 480px;
+            text-align: center;
+            line-height: 68px;
+            font-size: 20px;
+            color: rgb(78, 77, 77);
+            font-weight: 700;
+            display: none;
+        }
+
+        .canvas {
+            position: absolute;
+            background-color: pink;
+            background-image: url(./img/game7.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .keys {
+            width: 80px;
+            height: 120px;
+            position: absolute;
+            z-index: 99999;
+            box-sizing: border-box;
+            border: 1px solid #f2edee;
+        }
+
+        .quiet1 {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: relative;
+            left: 888px;
+            top: -460px;
+            background-image: url(./img/muted3.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .score1 {
+            width: 100px;
+            height: 30px;
+            position: relative;
+            left: 878px;
+            top: -419px;
+            font-size: 24px;
+            color: palevioletred;
+            font-weight: 800;
+        }
+
+        .gameover {
+            width: 320px;
+            height: 480px;
+            background-color: #5dcca2;
+            position: relative;
+            z-index: 999;
+            left: 501px;
+            top: -561px;
+            background-image: url(./img/game7-5.jpg);
+           
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            display: none;
+            text-align: center;
+            line-height: 525px;
+            font-size: 38px;
+            color: palevioletred;
+            /* //transition:1s ease; */
+            animation: gameover1 2s;
+        }
+
+        @keyframes gameover1 {
+            from {
+                width: 20px;
+                height: 20px;
+                left: 641px;
+                top: -351px;
+            }
+            to {
+                width: 320px;
+                height: 480px;
+                left: 501px;
+                top: -561px;
+            }
+        }
+
+        p {
+            position: absolute;
+            z-index: 999;
+            left: 597px;
+            top: 254px;
+            color: #fb9999;
+            font-size: 32px;
+            font-weight: 1000;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain1">
+        <div class="hidden">
+            <canvas class="canvas" width="320" height="480"></canvas>
+        </div>
+        <div class="start">开始游戏</div>
+        <div class="stop">暂停游戏</div>
+    </div>
+
+    <audio src="./likeyou1.mp3" class="audio1" loop="loop"></audio>
+    <audio src="./point.mp3" class="point"></audio>
+    <div class="quiet1"></div>
+    <div class="score1">得分：0</div>
+    <div class="gameover"></div>
+    <p>Let's Go！</p>
+    <script src="./js/drop.js"></script>
+    <script src="./js/game.js"></script>    
+    <script>
+        window.onload = function () {
+            let drop;
+            drop = new Drop();
+            drop.creatpetal();
+
+            let game;
+            game=new Game();
+            game.mutedmusic1();
+            game.startdrop();
+            game.onclickcanvas();
+            game.stopcanvas();
+        }
+    </script>
+
+
+
+
+
+</body>
+
+</html>

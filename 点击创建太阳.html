@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标点击的地方开一朵花---遍地开花</title>
+    <style>
+        *{
+            padding: 0px;
+            margin:0px;
+        }
+      .contain1{
+          width: 300px;
+          height: 400px;
+          border: 1px solid palevioletred;
+          position: absolute;
+          left: 800px;
+         
+      }
+    </style>
+</head>
+<body>
+        <div class="contain1">点击滑动到此</div>
+    <script>
+       window.onclick=(event)=>{
+           
+          let x=event.pageX || event.clientX;
+          let y=event.pageY || event.clientY;
+          //console.log(x,y);
+          if(x<750){
+          let f=document.createElement('img');
+          f.src='./image/sun1.png';
+          f.style.width="100px";
+          f.style.height="100px";
+          f.style.position="absolute"
+          f.style.left=(x-50)+"px";
+          f.style.top=(y-50)+"px";
+         // console.log(f.style.left);
+          document.body.appendChild(f);
+          var num=x-50;
+          //console.log(f.style.left);
+          if(num<750){
+           // console.log(f.style.left);
+            function anmation1(){
+            f.style.left=num+"px"; 
+            num+=10;
+            if(num>850){
+              clearInterval(set);
+          }
+          }
+         
+          var set=setInterval(anmation1,100);
+          }
+        
+       }
+       }
+       let x1=document.querySelector(".contain1");
+       console.log(window.innerHeight);
+        x1.style.height=window.innerHeight+'px';
+       console.log( x1);
+        
+    </script>
+</body>
+</html>

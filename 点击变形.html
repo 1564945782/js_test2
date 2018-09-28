@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击变形状</title>
+	<style type="text/css">		
+		.big1 {
+			display: flex;
+			margin: 50px;
+			justify-content: space-around;
+		}
+
+		.div1 {
+			width: 200px;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+			background-color: pink;	
+		}
+		
+		#inp1 {
+			margin: 31px 16px 10px 526px;
+		}
+		
+		.one {
+			border-radius: 50%;
+		}
+		.two {
+			transform: rotate(45deg);	
+		}
+		.three {
+			height: 100px;
+			margin-top: 50px;
+    		line-height: 100px;
+		}
+		.four {
+			height: 100px;
+			border-radius: 50%;	
+			margin-top: 50px;
+    		line-height: 100px;
+		}
+		#active1 {
+			border: 1px solid yellow;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="big1">
+	<div class="div1" id="" onclick="fn(0)">1</div>
+	<div class="div1" id="" onclick="fn(1)">2</div>
+	<div class="div1" id="" onclick="fn(2)">3</div>
+	<div class="div1" id="" onclick="fn(3)">4</div>
+	</div>
+	<div style="clear: both;"></div>
+	<input type="text" name="" id="inp1">
+	<button class="but1" onclick="fn1()">确定</button>
+	<script type="text/javascript">
+	var div1=document.querySelectorAll(".div1");
+	function fn(num){
+		index=num;
+		
+		
+		for (var i = 0; i<div1.length; i++) {
+			
+			if(i==num){
+				div1[i].id="active1";
+			}
+			else{
+				div1[i].id="";
+			}
+		}		
+	}
+	var index=0;
+	function fn1(){
+		 var t=inp1.value;
+		 for(var i=0;i<div1.length;i++){
+		 
+		 	if(t==1){
+		 		div1[index].className="one"+" div1";
+
+		 	}
+		 	if(t==2){
+		 		div1[index].className="two"+" div1";
+
+		 	}
+		 	if(t==3){
+				div1[index].className="three"+" div1";
+			}
+			if(t==4){
+				div1[index].className="four"+" div1";
+			}
+		 	else{div1[i].className="div1";}
+		 
+		 }
+		//console.log(inp1.value);
+		// if(t==1){
+		// div1[index].className="one"+" div1";
+
+
+		// }
+		// if(t==2){
+		// div1[index].className="two"+" div1";
+		// }
+		// if(t==3){
+		// div1[index].className="three"+" div1";
+		// }
+		// if(t==4){
+		// div1[index].className="four"+" div1";
+		// }
+		
+	}
+	//but1.onclick=fn()
+	</script>
+</body>
+</html>

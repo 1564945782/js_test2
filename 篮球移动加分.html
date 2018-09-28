@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>篮球移动</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .top1 {
+            width: 50px;
+            height: 50px;
+            background-image: url(./ball.jpg);
+            background-size: cover;
+            border: 1px solid rgb(189, 184, 184);
+            position: relative;
+
+        }
+
+        .bottom1 {
+            width: 50px;
+            height: 50px;
+            background-image: url(./basket.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            border: 1px solid rgb(189, 184, 184);
+            position: relative;
+        }
+
+        button {
+            position: relative;
+
+        }
+        p {
+            position: absolute;
+            /* left:500px; */
+        }
+
+        .stu {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top1">
+
+    </div>
+
+    <div class="bottom1">
+
+    </div>
+
+    <button>开始</button>
+    <p class="p1">得分：</p>
+    <p class="p2">失分：</p>
+
+
+    <script type="text/javascript">
+        let top1 = document.querySelector(".top1");
+        let bottom1 = document.querySelector(".bottom1");
+        let button = document.querySelector("button");
+        let p1 = document.querySelector(".p1");
+        let p2 = document.querySelector(".p2");
+        //获得窗口的宽
+        let t = window.innerWidth;
+        //球的位置
+        //获得窗口的高
+        let H = window.innerHeight;
+        //按钮的位置
+        button.style.left = (t - 120) + 'px';
+        //得分的位置
+        p1.style.left = (t - 120) + 'px';
+        p1.style.top = (H - 210) + 'px';
+        //失分的位置
+        p2.style.left = (t - 120) + 'px';
+        p2.style.top = (H - 180) + 'px';
+        //篮筐的位置
+        bottom1.style.top = (H - 105) + 'px';
+        bottom1.style.left = (t/2 - 120) + 'px';
+        let num=0;
+        let stu;
+        let time;
+        let score=0;
+        let score1=0;
+        
+        let random1;
+
+        //点击开始按钮
+        button.onclick = function () {
+            p1.innerHTML="得分："+score;
+            p2.innerHTML="失分："+score1;
+            stu = document.createElement('img');
+            stu.src = "./ball.jpg";
+            stu.className = 'stu';
+            top1.appendChild(stu);
+             random1 = Math.round(Math.random()*t);;
+            stu.style.left = random1 + 'px';
+           // console.log(666);
+             time = setInterval("drop1()", 500);
+        }
+        //篮球下移
+        function drop1() {
+           // console.log(num);
+            num += 10;
+            stu.style.top = (num + 5) + 'px';
+            if(num>=260){
+                
+                    //console.log(stu.style.left);
+                    
+                    console.log(bottom1.getBoundingClientRect().left);
+                    console.log(random1);
+                    let abs=random1-bottom1.getBoundingClientRect().left;
+                    console.log(abs);
+                    if(Math.abs(abs)<10){
+                        console.log(6666666);
+                        score+=1;
+                    }
+                    else{
+                        score1+=1;
+                        p2.style.color="red";
+                        if(score1>10){
+                            alert("游戏结束");
+                             score=0;
+                             score1=0;
+                        }
+                    }
+                    clearInterval(time);
+                    top1.removeChild(stu);
+                    num=0;
+                    time=0;
+                    return button.click();
+                }
+        }
+        //篮子移动
+        let num1 = 5;
+        document.onkeyup = function () {
+            var e = event || window.event || arguments.callee.caller.Arguments[0];
+            if (e && e.keyCode == "37") {
+                bottom1.style.left = (bottom1.getBoundingClientRect().left - 20) + "px";
+                
+                //console.log(bottom1.style.left);
+                let socle1=bottom1.style.left;
+                
+            }
+            if (e && e.keyCode == "39") {
+                bottom1.style.left = (bottom1.getBoundingClientRect().left + 20) + "px";
+                //console.log(555);
+                //console.log(bottom1.style.left);
+            }
+           
+
+        }
+    </script>
+</body>
+
+</html>

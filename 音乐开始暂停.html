@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>桌面歌词显示</title>
+    <style>
+        .dibu {
+            width: 100%;
+            height: 300px;
+            background-color: rgba(188, 245, 177, 0.3);
+            position: relative;
+        }
+
+        .geci {
+            width: 500px;
+            height: 200px;
+            position: absolute;
+            top: 0px;
+            left: 400px;
+            text-align: center;
+            line-height: 285px;
+            background-color: rgba(82, 224, 53, 0.3);
+        }
+
+        .btn0 {
+
+            position: absolute;
+            top: 200px;
+            left: 400px;
+        }
+
+        .bt {
+            width: 60px;
+            height: 40px;
+            margin-left: 120px;
+            margin-top: 30px;
+            background-color: rgb(189, 236, 168);
+        }
+
+        .touxaing {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-image: url(./music.jpg);
+            background-size: contain;
+            background-position-x: 0px;
+            background-position-y: 16px;
+            position: absolute;
+            top: 13px;
+            left: 591px;
+        }
+
+        @-webkit-keyframes rotation {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        .Rotation {
+            -webkit-transform: rotate(360deg);
+            animation: rotation 8s linear infinite;
+            -moz-animation: rotation 8s linear infinite;
+            -webkit-animation: rotation 8s linear infinite;
+            -o-animation: rotation 8s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dibu">
+        <div class="touxaing"></div>
+        <div class="geci"></div>
+        <div class="btn0">
+            <button class="bt n1">开始</button>
+            <button class="bt n2">暂停</button>
+        </div>
+        <!-- <audio src="./likeyou.mp3"></audio> -->
+        <audio src="./likeyou.mp3" class="audio1" loop="loop"></audio>
+
+    </div>
+    <script type="text/javascript">
+        //获取开始按钮
+        let btn = document.querySelectorAll(".bt");
+        //获取头像
+        let touxaing = document.querySelector(".touxaing");
+        //获取音乐
+        var audio1 = document.getElementsByClassName("audio1")[0];
+
+
+        //获取显示歌词的div
+        let geci = document.querySelector(".geci");
+        geci.innerHTML = `<p></p>`;
+        let addp = document.querySelector(".geci>p");
+        //歌词
+        let str = `[00:01.05]喜欢你 - G.E.M. 邓紫棋
+[00:04.04]词：黄家驹
+[00:04.97]
+[00:05.91]曲：黄家驹
+[00:06.82]
+[00:12.65]细雨带风湿透黄昏的街道
+[00:18.61]抹去雨水双眼无故地仰望
+[00:24.04]望向孤单的晚灯
+[00:26.91]
+[00:27.44]是那伤感的记忆
+[00:30.52]
+[00:34.12]再次泛起心里无数的思念
+[00:39.28]
+[00:40.10]以往片刻欢笑仍挂在脸上
+[00:45.49]愿你此刻可会知
+[00:48.23]
+[00:48.95]是我衷心的说声
+[00:53.06]
+[00:54.35]喜欢你 那双眼动人
+[00:59.35]
+[01:00.10]笑声更迷人
+[01:02.37]
+[01:03.15]愿再可 轻抚你
+[01:08.56]
+[01:09.35]那可爱面容
+[01:12.40]挽手说梦话
+[01:14.78]
+[01:15.48]像昨天 你共我
+[01:20.84]
+[01:26.32]满带理想的我曾经多冲动
+[01:32.45]屡怨与她相爱难有自由
+[01:37.82]愿你此刻可会知
+[01:40.40]
+[01:41.25]是我衷心的说声
+[01:44.81]
+[01:46.39]喜欢你 那双眼动人
+[01:51.72]
+[01:52.42]笑声更迷人
+[01:54.75]
+[01:55.48]愿再可 轻抚你
+[02:00.93]
+[02:01.68]那可爱面容
+[02:03.99]
+[02:04.73]挽手说梦话
+[02:07.13]
+[02:07.82]像昨天 你共我
+[02:14.53]
+[02:25.53]每晚夜里自我独行
+[02:29.30]随处荡 多冰冷
+[02:35.40]
+[02:37.83]以往为了自我挣扎
+[02:41.62]从不知 她的痛苦
+[02:52.02]
+[02:54.11]喜欢你 那双眼动人
+[03:00.13]笑声更迷人
+[03:02.38]
+[03:03.14]愿再可 轻抚你
+[03:08.77]
+[03:09.33]那可爱面容
+[03:11.71]
+[03:12.41]挽手说梦话
+[03:14.61]
+[03:15.45]像昨天 你共我
+[03:21.88]`;
+        let str1 = str.split("\n");
+        var a = str1.length;
+        let i = 0;
+        let num = 1000;
+
+        let ircall1 = [];
+        for (let i = 0; i < a; i++) {
+            for (let j = 0; j < a; j++) {
+                if (i == j) {
+                    let ircall = str1[i];
+                    let lrcreg = /\[(\d{2}):(\d{2})\.(\d{2})\](.*)/;
+                    let rinfo = lrcreg.exec(ircall);
+                    ircall1[j] = rinfo;
+                }
+            }
+        }
+        console.log(ircall1);
+
+
+        //获取歌词时间
+        let timeirc1 = [];
+        for (let i = 0; i < a; i++) {
+            timeirc1[i] = (ircall1[i][1] * 60 * 1000 + ircall1[i][2] * 1000 + ircall1[i][3] * 10) - 500;
+        }
+        console.log(timeirc1);
+
+        //加载歌词      
+
+        let cleartim;
+        function circle() {
+            if (i < timeirc1.length) {
+
+                addp.innerText = ircall1[i][4];
+
+
+            }
+            i++;
+
+        }
+        //开始按钮点击事件函数
+        var tim = 0
+        btn[0].onclick = function () {
+            tim = 0;
+            audio1.play();
+            touxaing.classList.add("Rotation");
+            for (let i = 0; i < timeirc1.length; i++) {
+                cleartim = setTimeout('circle()', timeirc1[tim]);
+                tim += 1;
+            }
+
+
+        }
+        //暂停按钮点击事件函数
+        btn[1].onclick = function () {
+            audio1.currentTime = 0;
+            audio1.pause();
+            touxaing.classList.remove("Rotation");
+            setTimeout(cleartim);
+            // geci.removeChild(addp);
+        }
+
+    </script>
+</body>
+
+</html>
